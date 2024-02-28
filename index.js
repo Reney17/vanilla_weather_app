@@ -6,37 +6,15 @@ function refreshWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let speedElement = document.querySelector("#speed");
   let timeElement = document.querySelector("#time");
-  let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.city;
-  timeElement.innerHTML = formatDate(date);
+  timeElement.innerHTML = formatDate(new Date(response.data.time * 1000));
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   speedElement.innerHTML = `${response.data.wind.speed}km/h`;
   descriptionElement.innerHTML = response.data.condition.description;
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="icon"/>`;
-
-  getForecast(response.data.city);
-}
-
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[date.getDay()];
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  return `${day} ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
@@ -45,50 +23,13 @@ function searchCity(city) {
   axios.get(apiUrl).then(refreshWeather);
 }
 
+// ...
+
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#search-form-input");
 
   searchCity(searchInputElement.value);
-}
-
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return days[date.getDay()];
-}
-
-function getForecast(city) {
-  let apiKey = "9b1af40t0eee5d3a056f2d34c7210d4o";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios(apiUrl).then(displayForecast);
-}
-
-function displayForecast(response) {
-  let forecastHtml = "";
-
-  response.data.daily.forEach(function (day, index) {
-    if (index < 5) {
-      forecastHtml =
-        forecastHtml +
-        `
-      <div class="weather-forecast-day">
-        <div class="date">${formatDay(day.time)}</div>
-        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
-        <div class="weather-forecast-temperature">
-          <div class="weather-max">
-            <strong>${Math.round(day.temperature.maximum)}°</strong>
-          </div>
-          <div class="weather-min">${Math.round(day.temperature.minimum)}°</div>
-        </div>
-      </div>
-    `;
-    }
-  });
-
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = forecastHtml;
 }
 
 let searchFormElement = document.querySelector("#search-form");
