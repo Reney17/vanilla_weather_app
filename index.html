@@ -3,65 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Weather App</title>
+    <title>Meteo App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../vanilla_weather_app/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="app">
+    <div class="container">
       <header>
         <form class="search-form" id="search-form">
           <input
             type="search"
-            placeholder="Enter a city"
-            class="search-input"
-            id="search-form-input"
+            placeholder="Enter a city.."
             required
+            class="search-form-input"
+            id="search-form-input"
           />
-          <input type="submit" value="Search" class="search-button" />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <div class="weather-data">
+        <div class="weather-app-data">
           <div>
-            <h1 class="app-city" id="weather-city"></h1>
-            <p class="app-details">
+            <h1 class="weather-app-city" id="city"></h1>
+            <p class="weather-app-details">
               <span id="time"></span>, <span id="description"></span>
               <br />
-              Humidity: <strong id="humidity"></strong>, Wind:
-              <strong id="speed"> </strong>
+              Humidity: <strong><span id="humidity"></span></strong>, Wind:
+              <strong><span id="speed"></span></strong>
             </p>
           </div>
-          <div class="temperature-app-container">
-            <div id="icon">
-              <img
-                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-night.png"
-                alt=""
-                class="icon"
-              />
+          <div class="weather-app-temperature-container">
+            <div class="weather-app-icon">
+              <div id="icon"></div>
             </div>
-            <div class="app-temp" id="temperature"></div>
-            <div class="unit">°C</div>
+            <div class="weather-app-temperature" id="temperature"></div>
+            <div class="weather-app-unit">°C</div>
           </div>
         </div>
-        <div class="weather-forecast" id="forecast"></div>
       </main>
+
       <footer>
         This project was coded by
-        <a href="https://github.com/Reney17" target="_blank">
-          Nicolette Mashaba,</a
-        >
-        is open-sourced on
+        <a href="https://github.com/Reney17" target="_blank"
+          >Nicolette Mashaba</a
+        >, is
         <a
           href="https://github.com/Reney17/vanilla_weather_app.git"
           target="_blank"
+          >open-sourced on Github</a
         >
-          GitHub</a
-        >
-        and hosted on
-        <a href="#" target="_blank">Netlify.</a>
+        and
+        <a href="" target="_blank">hosted on Netlify</a>
       </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
-    <script src="src/index.js"></script>
+    <script src="../vanilla_weather_app/index.js"></script>
   </body>
 </html>
